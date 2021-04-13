@@ -8,8 +8,29 @@ type BasicDebugger = {
   statsEnd: Function,
 }
 
-type GameState = {
+type GameFrameInitialState = {
   running: boolean,
   keysDown: Array<string>,
-  // Your custom state related types go here.
+}
+
+type GameState = {
+  running: boolean, // @todo DRY.
+  keysDown: Array<string>, // @todo DRY.
+  player: Player,
+  letters: Array<Letter>,
+}
+
+type Player = {
+  name: string,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+}
+
+type Letter = {
+  key: string,
+  x: number,
+  y: number,
+  color: string,
 }

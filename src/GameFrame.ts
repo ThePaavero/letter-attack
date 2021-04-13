@@ -14,7 +14,7 @@ const GameFrame = (canvas: HTMLCanvasElement, width: number, height: number, deb
   canvas.width = width
   canvas.height = height
 
-  const gameFrameInitialState: GameState = {
+  const gameFrameInitialState: GameFrameInitialState = {
     running: true,
     keysDown: [],
   }

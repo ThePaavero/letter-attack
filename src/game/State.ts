@@ -4,7 +4,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
-  const lettersPool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+  const lettersPool: Array<string> = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
   let ticksBetweenSpawns: number = 0
 
   const getRandomColor = (): string => {
@@ -18,6 +18,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       x: randomIntFromInterval(0, canvas.width),
       y: -50,
       color: getRandomColor(),
+      velocity: 2,
     }
   }
 
@@ -30,12 +31,20 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     if (ticksBetweenSpawns === state.ticksBetweenSpawns) {
       spawnLetter()
       ticksBetweenSpawns = 0
+      state.ticksBetweenSpawns = Math.ceil(state.ticksBetweenSpawns -= 10)
     }
+  }
+
+  const moveLetters = (): void => {
+    state.letters.forEach((letter: Letter): void => {
+      letter.y += letter.velocity
+      letter.velocity += (letter.velocity / 4) / 100
+    })
   }
 
   const update = (): void => {
     handleSpawningLetters()
-
+    moveLetters()
   }
 
   return { update }

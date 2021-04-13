@@ -6,6 +6,6 @@ export default {
     width: 10,
     height: 10,
   },
-  letters: [],
   ticksBetweenSpawns: 500,
+  letters: [],
 }

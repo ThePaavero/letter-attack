@@ -27,7 +27,7 @@ const GameFrame = (canvas: HTMLCanvasElement, width: number, height: number, deb
 
   const renderer = Renderer(canvas, context, state)
   const controls = Controls(state)
-  const stateUpdater = State(state, controls.keyIsDown)
+  const stateUpdater = State(state, controls.keyIsDown, canvas)
 
   const tick = (): void => {
     if (debugMode) {

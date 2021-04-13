@@ -35,4 +35,5 @@ type Letter = {
   y: number,
   color: string,
   velocity: number,
+  size: number,
 }

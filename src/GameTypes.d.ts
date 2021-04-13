@@ -16,9 +16,10 @@ type GameFrameInitialState = {
 type GameState = {
   running: boolean, // @todo DRY.
   keysDown: Array<string>, // @todo DRY.
+  ticksBetweenSpawns: number,
+  flashing: boolean,
   player: Player,
   letters: Array<Letter>,
-  ticksBetweenSpawns: number,
 }
 
 type Player = {

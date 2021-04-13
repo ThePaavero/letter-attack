@@ -6,6 +6,7 @@ export default {
     width: 10,
     height: 10,
   },
-  ticksBetweenSpawns: 500,
+  flashing: false,
+  ticksBetweenSpawns: 180,
   letters: [],
 }

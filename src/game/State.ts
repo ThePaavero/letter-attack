@@ -4,7 +4,8 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
-  const lettersPool: Array<string> = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+  const lettersPool: Array<string> = 'ABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
+  const minTicksBetweenSpawns: number = 1
   let ticksBetweenSpawns: number = 0
 
   const getRandomColor = (): string => {
@@ -33,12 +34,23 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     if (ticksBetweenSpawns === state.ticksBetweenSpawns) {
       spawnLetter()
       ticksBetweenSpawns = 0
-      state.ticksBetweenSpawns = Math.ceil(state.ticksBetweenSpawns -= 10)
+      if (state.ticksBetweenSpawns <= minTicksBetweenSpawns) {
+        state.ticksBetweenSpawns = minTicksBetweenSpawns
+        return
+      }
+      state.ticksBetweenSpawns = Math.ceil(state.ticksBetweenSpawns -= (state.ticksBetweenSpawns / 30))
     }
   }
 
   const removeLetter = (letter: Letter): void => {
     state.letters = state.letters.filter((l: Letter) => l !== letter)
+  }
+
+  const doOnLetterHittingGround = (): void => {
+    state.flashing = true
+    setTimeout((): void => {
+      state.flashing = false
+    }, 20)
   }
 
   const moveLetters = (): void => {
@@ -47,7 +59,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       letter.velocity += (letter.velocity / 4) / 100
 
       if (letter.y >= canvas.height) {
-        console.log('Letter hit the ground!')
+        doOnLetterHittingGround()
         removeLetter(letter)
       }
     })

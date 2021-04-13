@@ -7,4 +7,5 @@ export default {
     height: 10,
   },
   letters: [],
+  ticksBetweenSpawns: 100,
 }

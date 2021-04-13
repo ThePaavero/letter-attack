@@ -19,7 +19,7 @@ const GameFrame = (canvas: HTMLCanvasElement, width: number, height: number, deb
     keysDown: [],
   }
 
-  const state: GameState = { ...gameFrameInitialState, ...GameInitialState }
+  const state: any = { ...gameFrameInitialState, ...GameInitialState }
 
   if (debugMode) {
     basicDebugger = Debugger(state)

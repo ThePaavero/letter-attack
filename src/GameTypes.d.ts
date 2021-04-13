@@ -18,6 +18,7 @@ type GameState = {
   keysDown: Array<string>, // @todo DRY.
   player: Player,
   letters: Array<Letter>,
+  ticksBetweenSpawns: number,
 }
 
 type Player = {

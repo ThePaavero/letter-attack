@@ -125,7 +125,14 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
 
   const moveDebris = (): void => {
     state.debrisPieces.forEach((piece: DebrisPiece) => {
-      // ...
+      piece.x += piece.velocities.x
+      piece.y += piece.velocities.y
+      piece.velocities.x -= 0.2
+      piece.velocities.y -= 0.2
+
+      if (piece.velocities.x < 1) {
+        state.debrisPieces = state.debrisPieces.filter((p: DebrisPiece) => p !== piece)
+      }
     })
   }
 

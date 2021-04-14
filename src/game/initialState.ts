@@ -10,11 +10,14 @@ const player: Player = {
     x: 0,
     y: 0,
   },
+  canShoot: true,
 }
 
 const letters: Array<Letter> = []
+const projectiles: Array<Projectile> = []
 
 export default {
+  projectiles,
   player,
   flashing: false,
   ticksBetweenSpawns: 180,

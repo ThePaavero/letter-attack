@@ -20,6 +20,7 @@ type GameState = {
   flashing: boolean,
   player: Player,
   letters: Array<Letter>,
+  projectiles: Array<Projectile>,
 }
 
 type PlayerVelocities = {
@@ -36,6 +37,7 @@ type Player = {
   color: string,
   velocities: PlayerVelocities,
   speed: number,
+  canShoot: boolean,
 }
 
 type Letter = {
@@ -45,4 +47,11 @@ type Letter = {
   color: string,
   velocity: number,
   size: number,
+}
+
+type Projectile = {
+  key: string,
+  x: number,
+  y: number,
+  speed: number,
 }

@@ -71,6 +71,30 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     })
   }
 
+  const moveProjectiles = (): void => {
+    state.projectiles.forEach((projectile: Projectile): void => {
+      projectile.y -= projectile.speed
+      if (projectile.y < 0) {
+        state.projectiles = state.projectiles.filter((p: Projectile) => p !== projectile)
+        console.log('Removed projectile')
+      }
+    })
+  }
+
+  const shootProjectile = (key: string = ''): void => {
+    state.player.canShoot = false
+    const projectile = {
+      key: key.toUpperCase(),
+      x: state.player.x,
+      y: state.player.y,
+      speed: 2,
+    }
+    state.projectiles.push(projectile)
+    setTimeout(() => {
+      state.player.canShoot = true
+    }, 100)
+  }
+
   const movePlayer = (): void => {
     state.player.x += state.player.velocities.x
     state.player.y += state.player.velocities.y
@@ -80,11 +104,18 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     } else if (keyIsDown('arrowright')) {
       state.player.x += state.player.speed
     }
+
+    lettersPool.forEach((key: string): void => {
+      if (keyIsDown(key.toLowerCase()) && state.player.canShoot === true) {
+        shootProjectile(key)
+      }
+    })
   }
 
   const update = (): void => {
     handleSpawningLetters()
     moveLetters()
+    moveProjectiles()
     movePlayer()
   }
 

@@ -87,7 +87,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       key: key.toUpperCase(),
       x: state.player.x,
       y: state.player.y,
-      speed: 2,
+      speed: 20,
     }
     state.projectiles.push(projectile)
     setTimeout(() => {

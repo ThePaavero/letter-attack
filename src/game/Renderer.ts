@@ -12,6 +12,14 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     })
   }
 
+  const drawProjectiles = (): void => {
+    state.projectiles.forEach((projectile: Projectile): void => {
+      context.fillStyle = '#fff'
+      context.font = `20px Arial`
+      context.fillText(projectile.key, projectile.x, projectile.y)
+    })
+  }
+
   const drawPossibleFlash = (): void => {
     if (!state.flashing) {
       return
@@ -29,6 +37,7 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     clear()
     drawPossibleFlash()
     drawLetters()
+    drawProjectiles()
     drawPlayer()
   }
 

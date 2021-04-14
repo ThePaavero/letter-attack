@@ -22,12 +22,19 @@ type GameState = {
   letters: Array<Letter>,
 }
 
+type PlayerVelocities = {
+  x: number,
+  y: number,
+}
+
 type Player = {
   name: string,
   x: number,
   y: number,
   width: number,
   height: number,
+  color: string,
+  velocities: PlayerVelocities,
 }
 
 type Letter = {

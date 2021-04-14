@@ -13,16 +13,23 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
   }
 
   const drawPossibleFlash = (): void => {
-    if (state.flashing) {
-      context.fillStyle = '#934271'
-      context.fillRect(0, 0, canvas.width, canvas.height)
+    if (!state.flashing) {
+      return
     }
+    context.fillStyle = '#351122'
+    context.fillRect(0, 0, canvas.width, canvas.height)
+  }
+
+  const drawPlayer = (): void => {
+    context.fillStyle = state.player.color
+    context.fillRect(state.player.x, state.player.y, state.player.width, state.player.height)
   }
 
   const draw = (): void => {
     clear()
     drawPossibleFlash()
     drawLetters()
+    drawPlayer()
   }
 
   return { draw }

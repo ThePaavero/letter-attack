@@ -19,6 +19,7 @@ const projectiles: Array<Projectile> = []
 const debrisPieces: Array<DebrisPiece> = []
 
 export default {
+  timeElapsed: 0,
   debrisPieces,
   projectiles,
   player,

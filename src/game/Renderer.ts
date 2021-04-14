@@ -44,6 +44,7 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     context.fillStyle = '#fff'
     context.font = `20px Monospace`
     context.fillText(`LIVES: ${state.player.lives}`, 10, 20)
+    context.fillText(`POINTS: ${state.points}`, 10, 50)
   }
 
   const draw = (): void => {

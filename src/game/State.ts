@@ -179,7 +179,6 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
         if (projectileLeftWall >= letterLeftWall && projectileRightWall <= letterRightWall && projectileTopWall <= letterBottomWall) {
           if (projectile.key === letter.key) {
             removeLetter(letter)
-            state.player.lives += 1
             createExplosion(letter)
           } else {
             letter.velocity = letter.velocity * 1.1
@@ -193,8 +192,14 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     if (state.player.lives > 0) {
       return
     }
-    window.alert(`LOL GAME OVER`)
+    window.alert(`LOL GAME OVER\n\nPOINTS: ${state.points}`)
     window.location.reload()
+  }
+
+  const updateTimeElapsed = (): void => {
+    // These are really cycles/ticks...
+    state.timeElapsed++
+    state.points = Math.round(state.timeElapsed / 100)
   }
 
   const update = (): void => {
@@ -205,6 +210,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     checkForHits()
     moveDebris()
     handleLives()
+    updateTimeElapsed()
   }
 
   centerPlayer()

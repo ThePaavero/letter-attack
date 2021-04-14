@@ -14,6 +14,8 @@ type GameFrameInitialState = {
 }
 
 type GameState = {
+  timeElapsed: number,
+  points: number,
   running: boolean, // @todo DRY.
   keysDown: Array<string>, // @todo DRY.
   ticksBetweenSpawns: number,

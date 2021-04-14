@@ -151,7 +151,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
   }
 
   const createExplosion = (letter: Letter): void => {
-    let debrisCount = Math.ceil(letter.size / 2)
+    let debrisCount = Math.ceil(letter.size / 3)
     while (debrisCount--) {
       const pieceOfDebris: DebrisPiece = {
         x: letter.x,
@@ -160,7 +160,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
           x: randomIntFromInterval(-30, 30),
           y: randomIntFromInterval(-30, 30),
         },
-        size: letter.size / 10,
+        size: letter.size / 12,
       }
       state.debrisPieces.push(pieceOfDebris)
     }

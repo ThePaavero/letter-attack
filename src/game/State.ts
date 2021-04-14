@@ -8,7 +8,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
-  const centerPlayer = () => {
+  const centerPlayer = (): void => {
     state.player.x = canvas.width / 2 - (state.player.x / 2)
     state.player.y = canvas.height - (state.player.height + 3)
   }
@@ -83,7 +83,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
 
   const shootProjectile = (key: string = ''): void => {
     state.player.canShoot = false
-    const projectile = {
+    const projectile: Projectile = {
       key: key.toUpperCase(),
       x: state.player.x,
       y: state.player.y,

@@ -127,10 +127,20 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     state.debrisPieces.forEach((piece: DebrisPiece) => {
       piece.x += piece.velocities.x
       piece.y += piece.velocities.y
-      piece.velocities.x -= 0.2
-      piece.velocities.y -= 0.2
 
-      if (piece.velocities.x < 1) {
+      if (piece.velocities.x > 0) {
+        piece.velocities.x -= 0.2
+      } else {
+        piece.velocities.x += 0.2
+      }
+
+      if (piece.velocities.y > 0) {
+        piece.velocities.y -= 0.2
+      } else {
+        piece.velocities.y += 0.2
+      }
+
+      if (Math.abs(piece.velocities.x) < 1) {
         state.debrisPieces = state.debrisPieces.filter((p: DebrisPiece) => p !== piece)
       }
     })
@@ -143,10 +153,10 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
         x: letter.x,
         y: letter.y,
         velocities: {
-          x: randomIntFromInterval(10, 30),
-          y: randomIntFromInterval(10, 30),
+          x: randomIntFromInterval(-30, 30),
+          y: randomIntFromInterval(-30, 30),
         },
-        size: letter.size / debrisCount,
+        size: (letter.size / debrisCount) / 10,
       }
       state.debrisPieces.push(pieceOfDebris)
     }

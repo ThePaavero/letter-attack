@@ -20,6 +20,13 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     })
   }
 
+  const drawDebris = (): void => {
+    state.debrisPieces.forEach((piece: DebrisPiece): void => {
+      context.fillStyle = '#fff'
+      context.fillRect(piece.x, piece.y, piece.size, piece.size)
+    })
+  }
+
   const drawPossibleFlash = (): void => {
     if (!state.flashing) {
       return
@@ -38,6 +45,7 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     drawPossibleFlash()
     drawLetters()
     drawProjectiles()
+    drawDebris()
     drawPlayer()
   }
 

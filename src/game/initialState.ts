@@ -1,5 +1,6 @@
 const player: Player = {
   name: 'Player 1',
+  points: 0,
   x: 0,
   y: 0,
   width: 20,
@@ -15,8 +16,10 @@ const player: Player = {
 
 const letters: Array<Letter> = []
 const projectiles: Array<Projectile> = []
+const debrisPieces: Array<DebrisPiece> = []
 
 export default {
+  debrisPieces,
   projectiles,
   player,
   flashing: false,

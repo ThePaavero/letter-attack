@@ -21,21 +21,23 @@ type GameState = {
   player: Player,
   letters: Array<Letter>,
   projectiles: Array<Projectile>,
+  debrisPieces: Array<DebrisPiece>,
 }
 
-type PlayerVelocities = {
+type Velocity = {
   x: number,
   y: number,
 }
 
 type Player = {
   name: string,
+  points: number,
   x: number,
   y: number,
   width: number,
   height: number,
   color: string,
-  velocities: PlayerVelocities,
+  velocities: Velocity,
   speed: number,
   canShoot: boolean,
 }
@@ -54,5 +56,12 @@ type Projectile = {
   x: number,
   y: number,
   speed: number,
+  size: number,
+}
+
+type DebrisPiece = {
+  x: number,
+  y: number,
+  velocities: Velocity,
   size: number,
 }

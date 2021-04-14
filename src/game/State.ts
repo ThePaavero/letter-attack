@@ -57,6 +57,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     setTimeout((): void => {
       state.flashing = false
     }, 20)
+    state.player.points -= 1
   }
 
   const moveLetters = (): void => {
@@ -122,6 +123,28 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     })
   }
 
+  const moveDebris = (): void => {
+    state.debrisPieces.forEach((piece: DebrisPiece) => {
+      // ...
+    })
+  }
+
+  const createExplosion = (letter: Letter): void => {
+    let debrisCount = Math.ceil(letter.size / 2)
+    while (debrisCount--) {
+      const pieceOfDebris: DebrisPiece = {
+        x: letter.x,
+        y: letter.y,
+        velocities: {
+          x: randomIntFromInterval(10, 30),
+          y: randomIntFromInterval(10, 30),
+        },
+        size: letter.size / debrisCount,
+      }
+      state.debrisPieces.push(pieceOfDebris)
+    }
+  }
+
   const checkForHits = (): void => {
     state.projectiles.forEach((projectile: Projectile) => {
       state.letters.forEach((letter: Letter) => {
@@ -135,6 +158,8 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
         if (projectileLeftWall >= letterLeftWall && projectileRightWall <= letterRightWall && projectileTopWall <= letterBottomWall) {
           if (projectile.key === letter.key) {
             removeLetter(letter)
+            state.player.points += 1
+            createExplosion(letter)
           } else {
             letter.velocity = letter.velocity * 1.1
           }
@@ -149,6 +174,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     moveProjectiles()
     movePlayer()
     checkForHits()
+    moveDebris()
   }
 
   centerPlayer()

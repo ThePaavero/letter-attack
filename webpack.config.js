@@ -11,7 +11,7 @@ const plugins = [
     }
   }),
   new HtmlWebpackPlugin({
-    title: 'Typescript Game Starter',
+    title: 'Letter Attack!',
     template: '!!ejs-loader!src/index.html'
   }),
   new webpack.LoaderOptionsPlugin({

@@ -180,6 +180,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
           if (projectile.key === letter.key) {
             removeLetter(letter)
             createExplosion(letter)
+            state.timeElapsed += 100 // @todo Ehh...
           } else {
             letter.velocity = letter.velocity * 1.1
           }

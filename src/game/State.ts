@@ -105,6 +105,12 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       state.player.x += state.player.speed
     }
 
+    if (state.player.x < 0) {
+      state.player.x = 0
+    } else if (state.player.x > canvas.width - state.player.width) {
+      state.player.x = canvas.width - state.player.width
+    }
+
     lettersPool.forEach((key: string): void => {
       if (keyIsDown(key.toLowerCase()) && state.player.canShoot === true) {
         shootProjectile(key)

@@ -6,7 +6,7 @@ const Controls = (state: GameState): ControlsFunctions => {
 
   const eventTypes: Array<string> = ['keydown', 'keyup']
   eventTypes.forEach((eventType: string): void => {
-    window.addEventListener(eventType, (e: KeyboardEvent) => {
+    window.addEventListener(eventType, (e: KeyboardEvent): void => {
       const key: string = e.key.toLowerCase()
       switch (eventType) {
         case 'keydown':

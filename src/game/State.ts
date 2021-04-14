@@ -91,12 +91,12 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       size: 20,
     }
     state.projectiles.push(projectile)
-    setTimeout(() => {
+    setTimeout((): void => {
       state.player.canShoot = true
     }, 100)
   }
 
-  const keepPlayerWithinArea = () => {
+  const keepPlayerWithinArea = (): void => {
     if (state.player.x < 0) {
       state.player.x = 0
     } else if (state.player.x > canvas.width - state.player.width) {
@@ -124,7 +124,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
   }
 
   const moveDebris = (): void => {
-    state.debrisPieces.forEach((piece: DebrisPiece) => {
+    state.debrisPieces.forEach((piece: DebrisPiece): void => {
       piece.x += piece.velocities.x
       piece.y += piece.velocities.y
 
@@ -167,8 +167,8 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
   }
 
   const checkForHits = (): void => {
-    state.projectiles.forEach((projectile: Projectile) => {
-      state.letters.forEach((letter: Letter) => {
+    state.projectiles.forEach((projectile: Projectile): void => {
+      state.letters.forEach((letter: Letter): void => {
         const projectileLeftWall = projectile.x
         const projectileRightWall = projectile.x + projectile.size
         const letterLeftWall = letter.x

@@ -31,7 +31,7 @@ type Velocity = {
 
 type Player = {
   name: string,
-  points: number,
+  lives: number,
   x: number,
   y: number,
   width: number,

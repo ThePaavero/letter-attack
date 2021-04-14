@@ -40,10 +40,10 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     context.fillRect(state.player.x, state.player.y, state.player.width, state.player.height)
   }
 
-  const drawPoints = (): void => {
+  const drawLives = (): void => {
     context.fillStyle = '#fff'
     context.font = `20px Monospace`
-    context.fillText(`POINTS: ${state.player.points}`, 10, 20)
+    context.fillText(`LIVES: ${state.player.lives}`, 10, 20)
   }
 
   const draw = (): void => {
@@ -53,7 +53,7 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     drawProjectiles()
     drawDebris()
     drawPlayer()
-    drawPoints()
+    drawLives()
   }
 
   return { draw }

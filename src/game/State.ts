@@ -57,7 +57,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     setTimeout((): void => {
       state.flashing = false
     }, 20)
-    state.player.points -= 1
+    state.player.lives -= 1
   }
 
   const moveLetters = (): void => {
@@ -179,7 +179,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
         if (projectileLeftWall >= letterLeftWall && projectileRightWall <= letterRightWall && projectileTopWall <= letterBottomWall) {
           if (projectile.key === letter.key) {
             removeLetter(letter)
-            state.player.points += 1
+            state.player.lives += 1
             createExplosion(letter)
           } else {
             letter.velocity = letter.velocity * 1.1
@@ -189,8 +189,8 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     })
   }
 
-  const handlePoints = (): void => {
-    if (state.player.points > -1) {
+  const handleLives = (): void => {
+    if (state.player.lives > 0) {
       return
     }
     window.alert(`LOL GAME OVER`)
@@ -204,7 +204,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     movePlayer()
     checkForHits()
     moveDebris()
-    handlePoints()
+    handleLives()
   }
 
   centerPlayer()

@@ -1,6 +1,6 @@
 const player: Player = {
   name: 'Player 1',
-  points: 0,
+  lives: 3,
   x: 0,
   y: 0,
   width: 20,

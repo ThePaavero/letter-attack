@@ -189,6 +189,14 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     })
   }
 
+  const handlePoints = (): void => {
+    if (state.player.points > -1) {
+      return
+    }
+    window.alert(`LOL GAME OVER`)
+    window.location.reload()
+  }
+
   const update = (): void => {
     handleSpawningLetters()
     moveLetters()
@@ -196,6 +204,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     movePlayer()
     checkForHits()
     moveDebris()
+    handlePoints()
   }
 
   centerPlayer()

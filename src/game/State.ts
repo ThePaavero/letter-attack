@@ -20,7 +20,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
 
   const getNewLetter = (): Letter => {
     const key = lettersPool[randomIntFromInterval(0, lettersPool.length - 1)]
-    const size = randomIntFromInterval(20, 70)
+    const size = randomIntFromInterval(50, 90)
     return {
       key,
       size,
@@ -123,7 +123,6 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
   }
 
   const checkForHits = (): void => {
-    const buffer = 20
     state.projectiles.forEach((projectile: Projectile) => {
       state.letters.forEach((letter: Letter) => {
         const projectileLeftWall = projectile.x

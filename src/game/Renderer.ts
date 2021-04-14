@@ -7,7 +7,7 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
   const drawLetters = (): void => {
     state.letters.forEach((letter: Letter): void => {
       context.fillStyle = letter.color
-      context.font = `${letter.size}px Arial`
+      context.font = `${letter.size}px Monospace`
       context.fillText(letter.key, letter.x, letter.y)
     })
   }
@@ -15,7 +15,7 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
   const drawProjectiles = (): void => {
     state.projectiles.forEach((projectile: Projectile): void => {
       context.fillStyle = '#fff'
-      context.font = `20px Arial`
+      context.font = `20px Monospace`
       context.fillText(projectile.key, projectile.x, projectile.y)
     })
   }

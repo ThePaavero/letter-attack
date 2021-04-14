@@ -14,7 +14,7 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
 
   const drawPossibleFlash = (): void => {
     if (state.flashing) {
-      context.fillStyle = 'red'
+      context.fillStyle = '#934271'
       context.fillRect(0, 0, canvas.width, canvas.height)
     }
   }

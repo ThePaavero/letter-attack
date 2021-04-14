@@ -130,14 +130,15 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
         const projectileRightWall = projectile.x + projectile.size
         const letterLeftWall = letter.x
         const letterRightWall = letter.x + letter.size
-
         const projectileTopWall = projectile.y
-        const projectileBottomWall = projectile.y + projectile.size
-        const letterTopWall = letter.y
         const letterBottomWall = letter.y + letter.size
 
         if (projectileLeftWall >= letterLeftWall && projectileRightWall <= letterRightWall && projectileTopWall <= letterBottomWall) {
-          console.log('HIT!')
+          if (projectile.key === letter.key) {
+            removeLetter(letter)
+          } else {
+            letter.velocity = letter.velocity * 1.1
+          }
         }
       })
     })

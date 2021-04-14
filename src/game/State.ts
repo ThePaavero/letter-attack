@@ -128,21 +128,23 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       piece.x += piece.velocities.x
       piece.y += piece.velocities.y
 
+      // @todo This is fucked.
       if (piece.velocities.x > 0) {
-        piece.velocities.x -= 0.2
+        piece.velocities.x += 0.1
       } else {
-        piece.velocities.x += 0.2
+        piece.velocities.x -= 0.1
       }
-
       if (piece.velocities.y > 0) {
-        piece.velocities.y -= 0.2
+        piece.velocities.y += 0.1
       } else {
-        piece.velocities.y += 0.2
+        piece.velocities.y -= 0.1
       }
 
-      piece.size = piece.size * 0.8
+      piece.size = piece.size * 0.95
 
-      if (piece.size < 0.01) {
+      piece.velocities.y += 0.8
+
+      if (Math.abs(piece.velocities.x) < 0.01) {
         state.debrisPieces = state.debrisPieces.filter((p: DebrisPiece) => p !== piece)
       }
     })

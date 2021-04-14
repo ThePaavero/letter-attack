@@ -140,7 +140,9 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
         piece.velocities.y += 0.2
       }
 
-      if (Math.abs(piece.velocities.x) < 1) {
+      piece.size = piece.size * 0.8
+
+      if (piece.size < 0.01) {
         state.debrisPieces = state.debrisPieces.filter((p: DebrisPiece) => p !== piece)
       }
     })
@@ -156,7 +158,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
           x: randomIntFromInterval(-30, 30),
           y: randomIntFromInterval(-30, 30),
         },
-        size: (letter.size / debrisCount) / 10,
+        size: letter.size / 10,
       }
       state.debrisPieces.push(pieceOfDebris)
     }

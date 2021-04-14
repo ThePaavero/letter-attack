@@ -54,4 +54,5 @@ type Projectile = {
   x: number,
   y: number,
   speed: number,
+  size: number,
 }

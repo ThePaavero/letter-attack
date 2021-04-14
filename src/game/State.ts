@@ -76,7 +76,6 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       projectile.y -= projectile.speed
       if (projectile.y < 0) {
         state.projectiles = state.projectiles.filter((p: Projectile) => p !== projectile)
-        console.log('Removed projectile')
       }
     })
   }
@@ -88,6 +87,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       x: state.player.x,
       y: state.player.y,
       speed: 20,
+      size: 20,
     }
     state.projectiles.push(projectile)
     setTimeout(() => {
@@ -122,11 +122,33 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     })
   }
 
+  const checkForHits = (): void => {
+    const buffer = 20
+    state.projectiles.forEach((projectile: Projectile) => {
+      state.letters.forEach((letter: Letter) => {
+        const projectileLeftWall = projectile.x
+        const projectileRightWall = projectile.x + projectile.size
+        const letterLeftWall = letter.x
+        const letterRightWall = letter.x + letter.size
+
+        const projectileTopWall = projectile.y
+        const projectileBottomWall = projectile.y + projectile.size
+        const letterTopWall = letter.y
+        const letterBottomWall = letter.y + letter.size
+
+        if (projectileLeftWall >= letterLeftWall && projectileRightWall <= letterRightWall && projectileTopWall <= letterBottomWall) {
+          console.log('HIT!')
+        }
+      })
+    })
+  }
+
   const update = (): void => {
     handleSpawningLetters()
     moveLetters()
     moveProjectiles()
     movePlayer()
+    checkForHits()
   }
 
   centerPlayer()

@@ -40,6 +40,12 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     context.fillRect(state.player.x, state.player.y, state.player.width, state.player.height)
   }
 
+  const drawPoints = (): void => {
+    context.fillStyle = '#fff'
+    context.font = `20px Monospace`
+    context.fillText(`POINTS: ${state.player.points}`, 10, 20)
+  }
+
   const draw = (): void => {
     clear()
     drawPossibleFlash()
@@ -47,6 +53,7 @@ const Renderer = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, 
     drawProjectiles()
     drawDebris()
     drawPlayer()
+    drawPoints()
   }
 
   return { draw }

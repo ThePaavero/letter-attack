@@ -5,6 +5,7 @@ const player: Player = {
   width: 20,
   height: 20,
   color: '#fff',
+  speed: 10,
   velocities: {
     x: 0,
     y: 0,

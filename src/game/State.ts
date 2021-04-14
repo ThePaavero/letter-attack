@@ -74,6 +74,12 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
   const movePlayer = (): void => {
     state.player.x += state.player.velocities.x
     state.player.y += state.player.velocities.y
+
+    if (keyIsDown('arrowleft')) {
+      state.player.x -= state.player.speed
+    } else if (keyIsDown('arrowright')) {
+      state.player.x += state.player.speed
+    }
   }
 
   const update = (): void => {

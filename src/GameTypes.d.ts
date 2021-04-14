@@ -35,6 +35,7 @@ type Player = {
   height: number,
   color: string,
   velocities: PlayerVelocities,
+  speed: number,
 }
 
 type Letter = {

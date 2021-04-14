@@ -1,12 +1,12 @@
 const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement) => {
 
-  const randomIntFromInterval = (min: number, max: number): number => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
   const lettersPool: Array<string> = 'ABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
   const minTicksBetweenSpawns: number = 1
   let ticksBetweenSpawns: number = 0
+
+  const randomIntFromInterval = (min: number, max: number): number => {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
 
   const centerPlayer = () => {
     state.player.x = canvas.width / 2 - (state.player.x / 2)
@@ -95,6 +95,14 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
     }, 100)
   }
 
+  const keepPlayerWithinArea = () => {
+    if (state.player.x < 0) {
+      state.player.x = 0
+    } else if (state.player.x > canvas.width - state.player.width) {
+      state.player.x = canvas.width - state.player.width
+    }
+  }
+
   const movePlayer = (): void => {
     state.player.x += state.player.velocities.x
     state.player.y += state.player.velocities.y
@@ -105,11 +113,7 @@ const State = (state: GameState, keyIsDown: Function, canvas: HTMLCanvasElement)
       state.player.x += state.player.speed
     }
 
-    if (state.player.x < 0) {
-      state.player.x = 0
-    } else if (state.player.x > canvas.width - state.player.width) {
-      state.player.x = canvas.width - state.player.width
-    }
+    keepPlayerWithinArea()
 
     lettersPool.forEach((key: string): void => {
       if (keyIsDown(key.toLowerCase()) && state.player.canShoot === true) {
